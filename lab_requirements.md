@@ -3,7 +3,7 @@ To this point, our auth-server is able to handle Basic Authentication (user prov
 
 This lab will have you operating on the /signin route to add support for Token based authentication (“Bearer Auth”) using a token that you can obtain from performing the above activities.
 
--[ ] You’ll be required to wire up Bearer auth properly and then to dive in deeper and add some security measures to the tokens to prevent misuse and fraud.
+You’ll be required to wire up Bearer auth properly and then to dive in deeper and add some security measures to the tokens to prevent misuse and fraud.
 
 Before you begin
 - [x]Refer to Getting Started in the lab submission instructions for complete setup, configuration, deployment, and submission instructions.
@@ -18,7 +18,7 @@ SECRET
 
 ###Requirements:
 
--[ ] Implement a Bearer Authentication system with optional token expiry, api keys, and single use tokens.
+-[ ] Implement a Bearer Authentication system with optional ~~token expiry~~, api keys, and single use tokens.
 
 ####Assignment 1: 
 -[x] Install the core bearer authorization system
@@ -36,9 +36,9 @@ Improve the core bearer authorization system…
 
 -[ ] Add support for the creation and usage of ‘single-use’ JWTs
 
--[ ] With every authenticated access, re-send a new JWT token as a cookie or header
+With every authenticated access, re-send a new JWT token as a cookie or header
 
--[ ] Disable those that you’ve already authenticated
+Disable those that you’ve already authenticated
 
 -[ ] Implement these via configuration (i.e. an env setting or login option) so that your system can handle multiple authorization schemes
 
