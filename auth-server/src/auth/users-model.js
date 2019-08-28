@@ -20,6 +20,12 @@ users.pre('save', function(next) {
     .catch(console.error);
 });
 
+users.statics.authenticateToken = function(token) {
+  const decryptedToken = jwt.verify(token, precess.env.SECRET || 'secret');
+  const query = {_id: decryptedToken.id};
+  return this.findOne(query);
+};
+
 users.statics.createFromOauth = function(email) {
 
   if(! email) { return Promise.reject('Validation Error'); }
