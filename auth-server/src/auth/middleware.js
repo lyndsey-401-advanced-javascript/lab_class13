@@ -34,6 +34,7 @@ module.exports = (req, res, next) => {
   }
 
   //(line 14) similar to authenticateBasic, but starts by validating token
+  
   function _authBearer(authString) {
     return User.authenticateToken(authString)
       .then(user => _authenticate(user) )

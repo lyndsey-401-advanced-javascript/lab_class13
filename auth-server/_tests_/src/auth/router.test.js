@@ -13,6 +13,7 @@ let users = {
   admin: {username: 'admin', password: 'password', role: 'admin'},
   editor: {username: 'editor', password: 'password', role: 'editor'},
   user: {username: 'user', password: 'password', role: 'user'},
+  user: {username: 'somebody', password: 'tolove', role: 'user'}
 };
 
 beforeAll(supergoose.startDB);

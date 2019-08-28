@@ -20,11 +20,15 @@ users.pre('save', function(next) {
     .catch(console.error);
 });
 
+
 users.statics.authenticateToken = function(token) {
-  const decryptedToken = jwt.verify(token, precess.env.SECRET || 'secret');
+  const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
   const query = {_id: decryptedToken.id};
+  //check if decrypted token is already in token holding data structure
+  //add decrypted token to token holding data structure
   return this.findOne(query);
 };
+
 
 users.statics.createFromOauth = function(email) {
 
@@ -64,7 +68,11 @@ users.methods.generateToken = function() {
     role: this.role,
   };
   
-  return jwt.sign(token, process.env.SECRET);
+  //secretOrPrivateKey
+  //{expiresIn should tell the key to expire after 15minutes (or 900seconds)}
+  return jwt.sign(token, process.env.SECRET, {expiresIn: 900});
+  //returns json web token as a string
 };
 
 module.exports = mongoose.model('users', users);
+

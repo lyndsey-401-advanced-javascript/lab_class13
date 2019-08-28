@@ -21,26 +21,26 @@ SECRET
 -[ ] Implement a Bearer Authentication system with optional token expiry, api keys, and single use tokens.
 
 ####Assignment 1: 
--[ ] Install the core bearer authorization system
+-[x] Install the core bearer authorization system
 
 middleware.js - Handle the Bearer Header to pull and verify with the token
 
 users-model.js - Add a bearer authorization method that verifies the token
 
--[ ] Create a few users+passwords to test with
+-[x] Create a few users+passwords to test with
 
 ####Assignment 2: 
--[ ] Improve the core bearer authorization system…
+Improve the core bearer authorization system…
 
-Add support for the creation and usage of time sensitive (valid for 15 minutes) JWTs
+-[x] Add support for the creation and usage of time sensitive (valid for 15 minutes) JWTs
 
-Add support for the creation and usage of ‘single-use’ JWTs
+-[ ] Add support for the creation and usage of ‘single-use’ JWTs
 
-With every authenticated access, re-send a new JWT token as a cookie or header
+-[ ] With every authenticated access, re-send a new JWT token as a cookie or header
 
-Disable those that you’ve already authenticated
+-[ ] Disable those that you’ve already authenticated
 
-Implement these via configuration (i.e. an env setting or login option) so that your system can handle multiple authorization schemes
+-[ ] Implement these via configuration (i.e. an env setting or login option) so that your system can handle multiple authorization schemes
 
 ####Assignment 3: 
 -[ ] Create a Auth Key system
