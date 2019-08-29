@@ -25,7 +25,9 @@ users.statics.authenticateToken = function(token) {
   const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
   const query = {_id: decryptedToken.id};
   //check if decrypted token is already in token holding data structure
+  
   //add decrypted token to token holding data structure
+  
   return this.findOne(query);
 };
 
