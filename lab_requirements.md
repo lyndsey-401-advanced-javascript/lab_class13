@@ -34,13 +34,13 @@ Improve the core bearer authorization system…
 
 -[x] Add support for the creation and usage of time sensitive (valid for 15 minutes) JWTs
 
--[ ] Add support for the creation and usage of ‘single-use’ JWTs
+-[x] Add support for the creation and usage of ‘single-use’ JWTs 
 
 With every authenticated access, re-send a new JWT token as a cookie or header
 
 Disable those that you’ve already authenticated
 
--[ ] Implement these via configuration (i.e. an env setting or login option) so that your system can handle multiple authorization schemes
+-[ ] Implement these via configuration (i.e. an env setting or login option) so that your system can handle multiple authorization schemes 
 
 ####Assignment 3: 
 -[ ] Create a Auth Key system

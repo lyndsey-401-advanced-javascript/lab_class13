@@ -5,12 +5,13 @@ const User = require('./users-model.js');
 module.exports = (req, res, next) => {
   
   try {
-    let [authType, authString] = req.headers.authorization.split(/\s+/);
+    let [authType, authString] = req.headers.authorization.split(/\s+/); 
+    
     
     switch( authType.toLowerCase() ) {
-      case 'basic': 
+      case 'basic': //authType: if basic, goes to basic
         return _authBasic(authString);
-      case 'bearer':
+      case 'bearer': //authBearer: if bearer, goes to basic 
         return _authBearer(authString); //sets up _authBearer authorization
       default: 
         return _authError();
@@ -36,7 +37,7 @@ module.exports = (req, res, next) => {
   //(line 14) similar to authenticateBasic, but starts by validating token
   
   function _authBearer(authString) {
-    return User.authenticateToken(authString)
+    return User.authenticateToken(authString) //static method on the class constructor
       .then(user => _authenticate(user) )
       .catch(next);
   }
