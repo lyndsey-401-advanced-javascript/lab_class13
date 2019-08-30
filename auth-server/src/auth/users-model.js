@@ -37,8 +37,8 @@ users.statics.authenticateToken = function(token) {
 //this is from code review thursday (8/29) morning
 users.statics.authenticateToken = function (token) {
   if (process.env.REMEMBER === 'yes') {
-    const decryptedToken = jwut.verify(token, process.env.SECRET || 'secret');
-    const queary = {_id: decryptedToken.id}
+    const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
+    const query = {_id: decryptedToken.id}
     return this.findOne(query);
   } else {
     if (previousToken.includes(token) ){
@@ -87,7 +87,7 @@ users.methods.comparePassword = function(password) {
 users.methods.generateToken = function() {
   
   let token = {
-    id: this._id,
+    id: this._id, 
     role: this.role,
   };
   

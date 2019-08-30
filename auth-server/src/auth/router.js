@@ -7,7 +7,7 @@ const authRouter = express.Router();
 
 const User = require('./users-model.js');
 const auth = require('./middleware.js');
-const oauth = require('./oauth/google.js');
+const oauth = require('./oauth/google.js'); //oauth server 
 
 
 authRouter.post('/signup', (req, res, next) => {
@@ -22,11 +22,13 @@ authRouter.post('/signup', (req, res, next) => {
     }).catch(next);
 });
 
+//encrypted credentials in header 
 authRouter.post('/signin', auth, (req, res, next) => {
   res.cookie('auth', req.token);
   res.send(req.token);
 });
 
+//gets the go ahead from the Auth Server (google)
 authRouter.get('/oauth', (req,res,next) => {
   oauth.authorize(req)
     .then( token => {
