@@ -1,19 +1,19 @@
 'use strict';
 
-const superagent = require('superagent');
+const superagent = require('superagent'); //used to make requests (library)
 const Users = require('../users-model.js');
 
 const authorize = (req) => {
 
   let code = req.query.code;
-  console.log('(1) CODE:', code);
+  console.log('(1) CODE:', code); //in the url 
 
   return superagent.post('https://www.googleapis.com/oauth2/v4/token')
     .type('form')
     .send({
       code: code,
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      client_id: process.env.GOOGLE_CLIENT_ID, //saved in environment variables 
+      client_secret: process.env.GOOGLE_CLIENT_SECRET, 
       redirect_uri: `${process.env.API_URL}/oauth`,
       grant_type: 'authorization_code',
     })
@@ -24,7 +24,7 @@ const authorize = (req) => {
     })
     .then(token => {
       return superagent.get('https://www.googleapis.com/plus/v1/people/me/openIdConnect')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', `Bearer ${token}`) //sending access token TO google (Auth Service)
         .then( response => {
           let user = response.body;
           user.access_token = token;
@@ -34,7 +34,7 @@ const authorize = (req) => {
     })
     .then(oauthUser => {
       console.log('(4) CREATE ACCOUNT');
-      return Users.createFromOAuth(oauthUser);
+      return Users.createFromOAuth(oauthUser); 
     })
     .then(actualRealUser => {
       console.log('(5) ALMOST ...', actualRealUser);

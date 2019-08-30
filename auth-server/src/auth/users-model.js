@@ -21,12 +21,35 @@ users.pre('save', function(next) {
 });
 
 
+
+//if this route has an auth header with a value of bearer, the token is passed here
 users.statics.authenticateToken = function(token) {
   const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
   const query = {_id: decryptedToken.id};
+  
   //check if decrypted token is already in token holding data structure
+  
   //add decrypted token to token holding data structure
+  
   return this.findOne(query);
+};
+
+//this is from code review thursday (8/29) morning
+users.statics.authenticateToken = function (token) {
+  if (process.env.REMEMBER === 'yes') {
+    const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
+    const query = {_id: decryptedToken.id}
+    return this.findOne(query);
+  } else {
+    if (previousToken.includes(token) ){
+      throw new Error('invalid token');
+    } else {
+      previousToken.push(token);
+      const decryptedToken = jwt.verify(token, process.env.SECRET || 'secret');
+      const query = {_id: decryptedToken.id};
+      return this.findOne(query);
+    }
+  }
 };
 
 
@@ -64,7 +87,7 @@ users.methods.comparePassword = function(password) {
 users.methods.generateToken = function() {
   
   let token = {
-    id: this._id,
+    id: this._id, 
     role: this.role,
   };
   
